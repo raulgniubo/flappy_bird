@@ -1,6 +1,11 @@
 
 import pygame, sys
 
+def draw_floor():
+    screen.blit(floor_surface, (floor_x_pos, 900))
+    screen.blit(floor_surface, (floor_x_pos + 576, 900))
+
+
 pygame.init()
 screen = pygame.display.set_mode((576, 1024))  # the canvas is going to be 576 x 1024
 clock = pygame.time.Clock()  # to be able to limit framerate
@@ -13,6 +18,7 @@ bg_surface = pygame.transform.scale2x(bg_surface)
 
 floor_surface = pygame.image.load("assets/sprites/base.png").convert()
 floor_surface = pygame.transform.scale2x(floor_surface)
+floor_x_pos = 0;
 
 while True:
 
@@ -23,7 +29,10 @@ while True:
 
     # screen.blit(): to put 1 surface on top of the other one
     screen.blit(bg_surface, (0, 0))  # (0, 0) -> top left of the screen
-    screen.blit(floor_surface, (0, 900))
+    floor_x_pos -= 1  # so that each time it loops it moves the picture to the left on the x axis
+    draw_floor()
+    if floor_x_pos <= -576:
+        floor_x_pos = 0
 
     pygame.display.update()  # it updates the screen
     clock.tick(120)  # to limit the framerate to 120, so the loop never runs faster than 120 fps
