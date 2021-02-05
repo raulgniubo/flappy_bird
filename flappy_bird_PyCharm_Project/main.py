@@ -7,12 +7,12 @@ clock = pygame.time.Clock()  # to be able to limit framerate
 
 while True:
 
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            pygame.quit()
-            sys.exit()
+    for event in pygame.event.get():  # it captures all events in the game
+        if event.type == pygame.QUIT:  # if we close the game
+            pygame.quit()  # to exit the game
+            sys.exit()  # to make sure the game exits correctly
 
-    pygame.display.update()
+    pygame.display.update()  # it updates the screen
     clock.tick(120)  # to limit the framerate to 120, so the loop never runs faster than 120 fps
 
 
