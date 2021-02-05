@@ -7,8 +7,9 @@ def draw_floor():
 
 def create_pipe():
     random_pipe_pos = random.choice(pipe_height)
-    new_pipe = pipe_surface.get_rect(midtop= (700, random_pipe_pos))
-    return new_pipe
+    bottom_pipe = pipe_surface.get_rect(midtop= (700, random_pipe_pos))
+    top_pipe = pipe_surface.get_rect(midbottom=(700, random_pipe_pos - 300))
+    return bottom_pipe, top_pipe
 
 def move_pipes(pipes):
     for pipe in pipes:
@@ -59,7 +60,7 @@ while True:
                 bird_movement = 0  # so we reset gravity to 0
                 bird_movement -= 12  # because gravity is positive
         if event.type == SPAWNPIPE:  # every 1.2s
-            pipe_list.append(create_pipe())
+            pipe_list.extend(create_pipe())
 
     # screen.blit(): to put 1 surface on top of the other one
     screen.blit(bg_surface, (0, 0))  # (0, 0) -> top left of the screen
