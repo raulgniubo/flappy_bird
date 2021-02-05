@@ -20,6 +20,10 @@ floor_surface = pygame.image.load("assets/sprites/base.png").convert()
 floor_surface = pygame.transform.scale2x(floor_surface)
 floor_x_pos = 0;
 
+bird_surface = pygame.image.load("assets/sprites/bluebird-midflap.png").convert()
+bird_surface = pygame.transform.scale2x(bird_surface)
+bird_rect = bird_surface.get_rect(center = (100, 512))  # it takes the bird_surface and puts a rectangle around it
+
 while True:
 
     for event in pygame.event.get():  # it captures all events in the game
@@ -29,6 +33,7 @@ while True:
 
     # screen.blit(): to put 1 surface on top of the other one
     screen.blit(bg_surface, (0, 0))  # (0, 0) -> top left of the screen
+    screen.blit(bird_surface, bird_rect)  # instead of passing the coordinates, we pass the bird_rect
     floor_x_pos -= 1  # so that each time it loops it moves the picture to the left on the x axis
     draw_floor()
     if floor_x_pos <= -576:
