@@ -10,6 +10,10 @@ pygame.init()
 screen = pygame.display.set_mode((576, 1024))  # the canvas is going to be 576 x 1024
 clock = pygame.time.Clock()  # to be able to limit framerate
 
+# Game Variables
+gravity = 0.25
+bird_movement = 0
+
 # loading the background image
 # convert()  -> it converts the image to a type of file that it's easier for pygame
 bg_surface = pygame.image.load("assets/sprites/background-day.png").convert()
@@ -30,9 +34,16 @@ while True:
         if event.type == pygame.QUIT:  # if we close the game
             pygame.quit()  # to exit the game
             sys.exit()  # to make sure the game exits correctly
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_SPACE:
+                bird_movement = 0  # so we reset gravity to 0
+                bird_movement -= 12  # because gravity is positive
 
     # screen.blit(): to put 1 surface on top of the other one
     screen.blit(bg_surface, (0, 0))  # (0, 0) -> top left of the screen
+
+    bird_movement += gravity
+    bird_rect.centery += bird_movement
     screen.blit(bird_surface, bird_rect)  # instead of passing the coordinates, we pass the bird_rect
     floor_x_pos -= 1  # so that each time it loops it moves the picture to the left on the x axis
     draw_floor()
