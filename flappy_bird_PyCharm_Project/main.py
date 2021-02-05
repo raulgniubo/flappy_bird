@@ -24,6 +24,15 @@ def draw_pipes(pipes):
             flip_pipe = pygame.transform.flip(pipe_surface, False, True)  # x-dir: False, y-dir: True
             screen.blit(flip_pipe, pipe)
 
+def check_collision(pipes):
+    for pipe in pipes:
+        if bird_rect.colliderect(pipe):
+            return True
+
+    if bird_rect.top <= -100 or bird_rect.bottom >= 900:  # 900 is the floor position
+        return True
+
+
 pygame.init()
 screen = pygame.display.set_mode((576, 1024))  # the canvas is going to be 576 x 1024
 clock = pygame.time.Clock()  # to be able to limit framerate
@@ -73,6 +82,7 @@ while True:
     bird_movement += gravity
     bird_rect.centery += bird_movement
     screen.blit(bird_surface, bird_rect)  # instead of passing the coordinates, we pass the bird_rect
+    check_collision(pipe_list)
 
     # Pipes
     pipe_list = move_pipes(pipe_list)
