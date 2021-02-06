@@ -60,9 +60,23 @@ floor_surface = pygame.transform.scale2x(floor_surface)
 floor_x_pos = 0
 
 # covert_alpha so that no black screen around the bird shows up when rotating
-bird_surface = pygame.image.load("assets/sprites/bluebird-midflap.png").convert_alpha()
-bird_surface = pygame.transform.scale2x(bird_surface)
-bird_rect = bird_surface.get_rect(center = (100, 512))  # it takes the bird_surface and puts a rectangle around it
+# different images to be able to animate the bird flaps
+bird_downflap = pygame.transform.scale2x(pygame.image.load("assets/sprites/bluebird-downflap.png")).convert_alpha()
+bird_midflap = pygame.transform.scale2x(pygame.image.load("assets/sprites/bluebird-midflap.png")).convert_alpha()
+bird_upflap = pygame.transform.scale2x(pygame.image.load("assets/sprites/bluebird-upflap.png")).convert_alpha()
+bird_frames = [bird_downflap, bird_midflap, bird_upflap]
+bird_index = 0
+bird_surface = bird_frames[bird_index]
+bird_rect = bird_surface.get_rect(center = (100, 512))
+
+
+
+
+
+# covert_alpha so that no black screen around the bird shows up when rotating
+# bird_surface = pygame.image.load("assets/sprites/bluebird-midflap.png").convert_alpha()
+# bird_surface = pygame.transform.scale2x(bird_surface)
+# bird_rect = bird_surface.get_rect(center = (100, 512))  # it takes the bird_surface and puts a rectangle around it
 
 pipe_surface = pygame.image.load("assets/sprites/pipe-green.png")
 pipe_surface = pygame.transform.scale2x(pipe_surface)
