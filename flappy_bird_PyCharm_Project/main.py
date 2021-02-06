@@ -39,6 +39,11 @@ def rotate_bird(bird):
     new_bird = pygame.transform.rotozoom(bird, -bird_movement * 3, 1)
     return new_bird
 
+def bird_animation():
+    new_bird = bird_frames[bird_index]
+    new_bird_rect = new_bird.get_rect(center = (100, bird_rect.centery))
+    return new_bird, new_bird_rect
+
 
 pygame.init()
 screen = pygame.display.set_mode((576, 1024))  # the canvas is going to be 576 x 1024
@@ -69,9 +74,8 @@ bird_index = 0
 bird_surface = bird_frames[bird_index]
 bird_rect = bird_surface.get_rect(center = (100, 512))
 
-
-
-
+BIRDFLAP = pygame.USEREVENT + 1  # +1 because we don't want it to be the same as the other one
+pygame.time.set_timer(BIRDFLAP, 200)  # 200 milli-seconds
 
 # covert_alpha so that no black screen around the bird shows up when rotating
 # bird_surface = pygame.image.load("assets/sprites/bluebird-midflap.png").convert_alpha()
@@ -102,6 +106,13 @@ while True:
                 bird_movement = 0
         if event.type == SPAWNPIPE:  # every 1.2s
             pipe_list.extend(create_pipe())
+        if event.type == BIRDFLAP:
+            if bird_index < 2:
+                bird_index += 1
+            else:
+                bird_index = 0
+
+            bird_surface, bird_rect = bird_animation()
 
     # screen.blit(): to put 1 surface on top of the other one
     screen.blit(bg_surface, (0, 0))  # (0, 0) -> top left of the screen
