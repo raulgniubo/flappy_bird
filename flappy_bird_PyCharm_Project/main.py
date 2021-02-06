@@ -42,7 +42,7 @@ clock = pygame.time.Clock()  # to be able to limit framerate
 # Game Variables
 gravity = 0.25
 bird_movement = 0
-game_active = True
+game_active = False
 
 # loading the background image
 # convert()  -> it converts the image to a type of file that it's easier for pygame
@@ -72,9 +72,14 @@ while True:
             pygame.quit()  # to exit the game
             sys.exit()  # to make sure the game exits correctly
         if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_SPACE:
+            if event.key == pygame.K_SPACE and game_active:
                 bird_movement = 0  # so we reset gravity to 0
-                bird_movement -= 12  # because gravity is positive
+                bird_movement -= 9  # because gravity is positive
+            if event.key == pygame.K_SPACE and game_active == False:
+                game_active = True
+                pipe_list.clear()
+                bird_rect.center = (100, 512)
+                bird_movement = 0
         if event.type == SPAWNPIPE:  # every 1.2s
             pipe_list.extend(create_pipe())
 
