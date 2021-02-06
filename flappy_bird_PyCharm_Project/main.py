@@ -44,15 +44,23 @@ def bird_animation():
     new_bird_rect = new_bird.get_rect(center = (100, bird_rect.centery))
     return new_bird, new_bird_rect
 
+def score_display():
+    score_surface = game_font.render("Score", True, (255, 255, 255))  # anti-alias: True, color: (255, 255, 255): RGB
+    score_rect = score_surface.get_rect(center = (288, 100))  # x: 288, y: 100
+    screen.blit(score_surface, score_rect)
 
 pygame.init()
 screen = pygame.display.set_mode((576, 1024))  # the canvas is going to be 576 x 1024
 clock = pygame.time.Clock()  # to be able to limit framerate
+game_font = pygame.font.SysFont('arial', 40)  # font-style: 04B_19.ttf, text-size: 40
+# game_font = pygame.font.Font('04B_19.ttf', 40)  # font-style: 04B_19.ttf, text-size: 40
 
 # Game Variables
 gravity = 0.25
 bird_movement = 0
 game_active = False
+score = 0
+high_score = 0
 
 # loading the background image
 # convert()  -> it converts the image to a type of file that it's easier for pygame
@@ -128,6 +136,8 @@ while True:
         # Pipes
         pipe_list = move_pipes(pipe_list)
         draw_pipes(pipe_list)
+
+        score_display()
 
     # Floor
     floor_x_pos -= 1  # so that each time it loops it moves the picture to the left on the x axis
