@@ -120,6 +120,7 @@ game_over_rect = game_over_surface.get_rect(center = (288, 512))
 flap_sound = pygame.mixer.Sound("assets/audio/wing.wav")
 death_sound = pygame.mixer.Sound("assets/audio/hit.wav")
 score_sound = pygame.mixer.Sound("assets/audio/point.wav")
+score_sound_countdown = 100
 
 while True:
 
@@ -165,6 +166,10 @@ while True:
 
         score += 0.01
         score_display("main_game")
+        score_sound_countdown -= 1
+        if score_sound_countdown <= 0:
+            score_sound.play()
+            score_sound_countdown = 100
     else:
         screen.blit(game_over_surface, game_over_rect)
         high_score = update_score(score, high_score)
@@ -178,7 +183,3 @@ while True:
 
     pygame.display.update()  # it updates the screen
     clock.tick(120)  # to limit the framerate to 120, so the loop never runs faster than 120 fps
-
-
-
-
