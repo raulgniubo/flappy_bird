@@ -102,8 +102,9 @@ bg_surface = pygame.image.load("assets/pics/forest_cartoon_02.jpg").convert()
 # pygame.transform.scale2x(picture)  -> to scale a picture 2x (doubling its size)
 #bg_surface = pygame.transform.scale2x(bg_surface)
 
-floor_surface = pygame.image.load("assets/sprites/base.png").convert()
-floor_surface = pygame.transform.scale2x(floor_surface)
+floor_surface = pygame.image.load("assets/pics/floor_01.png").convert_alpha()
+# floor_surface = pygame.image.load("assets/sprites/base.png").convert()
+# floor_surface = pygame.transform.scale2x(floor_surface)
 floor_x_pos = 0
 
 # covert_alpha so that no black screen around the bird shows up when rotating
@@ -128,7 +129,7 @@ pygame.time.set_timer(BIRDFLAP, 200)  # 200 milli-seconds
 # bird_surface = pygame.transform.scale2x(bird_surface)
 # bird_rect = bird_surface.get_rect(center = (100, 512))  # it takes the bird_surface and puts a rectangle around it
 
-pipe_surface = pygame.image.load("assets/sprites/pipe-green.png")
+pipe_surface = pygame.image.load("assets/pics/pipe_green_01.png").convert_alpha()
 # pipe_surface = pygame.image.load("assets/pics/rock_01.png")
 #pipe_surface = pygame.transform.scale2x(pipe_surface)
 pipe_surface = pygame.transform.scale2x(pipe_surface)
@@ -137,7 +138,8 @@ SPAWNPIPE = pygame.USEREVENT
 pygame.time.set_timer(SPAWNPIPE, 1200)  # 1200 in milli-seconds, so every 1.2s
 pipe_height = [400, 600, 800]  # all different height that a pipe can have
 
-game_over_surface = pygame.transform.scale2x(pygame.image.load("assets/sprites/message.png").convert_alpha())
+game_over_surface = pygame.image.load("assets/pics/roundy_bird_welcome.png").convert_alpha()
+# game_over_surface = pygame.transform.scale2x(pygame.image.load("assets/sprites/message.png").convert_alpha())
 game_over_rect = game_over_surface.get_rect(center = (288, 512))
 
 flap_sound = pygame.mixer.Sound("assets/audio/wing.wav")
