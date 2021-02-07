@@ -108,9 +108,13 @@ floor_x_pos = 0
 
 # covert_alpha so that no black screen around the bird shows up when rotating
 # different images to be able to animate the bird flaps
-bird_downflap = pygame.transform.scale2x(pygame.image.load("assets/sprites/bluebird-downflap.png")).convert_alpha()
-bird_midflap = pygame.transform.scale2x(pygame.image.load("assets/sprites/bluebird-midflap.png")).convert_alpha()
-bird_upflap = pygame.transform.scale2x(pygame.image.load("assets/sprites/bluebird-upflap.png")).convert_alpha()
+bird_downflap = pygame.image.load("assets/pics/bird_01.png").convert_alpha()
+bird_midflap = pygame.image.load("assets/pics/bird_01.png").convert_alpha()
+bird_upflap = pygame.image.load("assets/pics/bird_01.png").convert_alpha()
+
+# bird_downflap = pygame.transform.scale2x(pygame.image.load("assets/sprites/bluebird-downflap.png")).convert_alpha()
+# bird_midflap = pygame.transform.scale2x(pygame.image.load("assets/sprites/bluebird-midflap.png")).convert_alpha()
+# bird_upflap = pygame.transform.scale2x(pygame.image.load("assets/sprites/bluebird-upflap.png")).convert_alpha()
 bird_frames = [bird_downflap, bird_midflap, bird_upflap]
 bird_index = 0
 bird_surface = bird_frames[bird_index]
