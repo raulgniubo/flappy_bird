@@ -98,9 +98,9 @@ can_score = True
 
 # loading the background image
 # convert()  -> it converts the image to a type of file that it's easier for pygame
-bg_surface = pygame.image.load("assets/sprites/background-day.png").convert()
+bg_surface = pygame.image.load("assets/pics/forest_cartoon_02.jpg").convert()
 # pygame.transform.scale2x(picture)  -> to scale a picture 2x (doubling its size)
-bg_surface = pygame.transform.scale2x(bg_surface)
+#bg_surface = pygame.transform.scale2x(bg_surface)
 
 floor_surface = pygame.image.load("assets/sprites/base.png").convert()
 floor_surface = pygame.transform.scale2x(floor_surface)
@@ -125,6 +125,8 @@ pygame.time.set_timer(BIRDFLAP, 200)  # 200 milli-seconds
 # bird_rect = bird_surface.get_rect(center = (100, 512))  # it takes the bird_surface and puts a rectangle around it
 
 pipe_surface = pygame.image.load("assets/sprites/pipe-green.png")
+# pipe_surface = pygame.image.load("assets/pics/rock_01.png")
+#pipe_surface = pygame.transform.scale2x(pipe_surface)
 pipe_surface = pygame.transform.scale2x(pipe_surface)
 pipe_list = []
 SPAWNPIPE = pygame.USEREVENT
