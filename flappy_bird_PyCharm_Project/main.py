@@ -27,6 +27,7 @@ def draw_pipes(pipes):
 def check_collision(pipes):
     for pipe in pipes:
         if bird_rect.colliderect(pipe):
+            death_sound.play()
             return False
 
     if bird_rect.top <= -100 or bird_rect.bottom >= 900:  # 900 is the floor position
@@ -117,6 +118,8 @@ game_over_surface = pygame.transform.scale2x(pygame.image.load("assets/sprites/m
 game_over_rect = game_over_surface.get_rect(center = (288, 512))
 
 flap_sound = pygame.mixer.Sound("assets/audio/wing.wav")
+death_sound = pygame.mixer.Sound("assets/audio/hit.wav")
+score_sound = pygame.mixer.Sound("assets/audio/point.wav")
 
 while True:
 
