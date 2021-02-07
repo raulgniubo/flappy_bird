@@ -63,6 +63,8 @@ def update_score(score, high_score):
         high_score = score
     return high_score
 
+pygame.mixer.pre_init()
+# pygame.mixer.pre_init(frequency = 44100, size = 16, channels = 1, buffer = 512)
 pygame.init()
 screen = pygame.display.set_mode((576, 1024))  # the canvas is going to be 576 x 1024
 clock = pygame.time.Clock()  # to be able to limit framerate
@@ -114,6 +116,7 @@ pipe_height = [400, 600, 800]  # all different height that a pipe can have
 game_over_surface = pygame.transform.scale2x(pygame.image.load("assets/sprites/message.png").convert_alpha())
 game_over_rect = game_over_surface.get_rect(center = (288, 512))
 
+flap_sound = pygame.mixer.Sound("assets/audio/wing.wav")
 
 while True:
 
@@ -125,6 +128,7 @@ while True:
             if event.key == pygame.K_SPACE and game_active:
                 bird_movement = 0  # so we reset gravity to 0
                 bird_movement -= 9  # because gravity is positive
+                flap_sound.play()
             if event.key == pygame.K_SPACE and game_active == False:
                 game_active = True
                 pipe_list.clear()
