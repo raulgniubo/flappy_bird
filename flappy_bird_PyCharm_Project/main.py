@@ -80,7 +80,7 @@ def pipe_score_check():
             if pipe.centerx < 0:
                 can_score = True
 
-pygame.mixer.pre_init()
+#pygame.mixer.pre_init()
 # pygame.mixer.pre_init(frequency = 44100, size = 16, channels = 1, buffer = 512)
 pygame.init()
 screen = pygame.display.set_mode((576, 1024))  # the canvas is going to be 576 x 1024
