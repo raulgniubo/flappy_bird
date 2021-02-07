@@ -14,7 +14,8 @@ def create_pipe():
 def move_pipes(pipes):
     for pipe in pipes:
         pipe.centerx -= 5
-    return pipes
+    visible_pipes = [pipe for pipe in pipes if pipe.right > -50]
+    return visible_pipes
 
 def draw_pipes(pipes):
     for pipe in pipes:
