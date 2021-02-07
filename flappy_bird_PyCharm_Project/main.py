@@ -111,6 +111,10 @@ SPAWNPIPE = pygame.USEREVENT
 pygame.time.set_timer(SPAWNPIPE, 1200)  # 1200 in milli-seconds, so every 1.2s
 pipe_height = [400, 600, 800]  # all different height that a pipe can have
 
+game_over_surface = pygame.transform.scale2x(pygame.image.load("assets/sprites/message.png").convert_alpha())
+game_over_rect = game_over_surface.get_rect(center = (288, 512))
+
+
 while True:
 
     for event in pygame.event.get():  # it captures all events in the game
@@ -155,6 +159,7 @@ while True:
         score += 0.01
         score_display("main_game")
     else:
+        screen.blit(game_over_surface, game_over_rect)
         high_score = update_score(score, high_score)
         score_display("game_over")
 
